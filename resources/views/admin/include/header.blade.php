@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>TAMBOLA</title>
+    <title>MEMESTAN</title>
     {{-- <link rel="icon" href="{{ asset('logo/logo.png')}}" type="image/icon type"> --}}
 
 
@@ -57,7 +57,7 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="{{route('admin.deshboard')}}" class="site_title">
-                TAMBOLA
+                MEMESTAN
                 {{-- <img src="{{ asset('logo/logo.png')}}" height="50" style=" width: 50%;"> --}}
               </a>
             </div>
@@ -85,7 +85,26 @@
                 <ul class="nav side-menu">
                   <li><a href="{{ route('admin.deshboard')}}"><i class="fa fa-home"></i> Home </span></a>
                   </li>
-                  <li><a href="#"><i class="fa fa-key" aria-hidden="true"></i>Change Password</a></li>
+
+                  <li><a><i class="fa fa-edit"></i> Template <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                     <li class="sub_menu"><a href="{{route('admin.add_template_form')}}">Add template</a>
+                     </li>
+                     <li class="sub_menu"><a href="{{route('admin.template_list')}}">Template List</a>
+                     </li>
+                   </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-edit"></i> Sticker <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                     <li class="sub_menu"><a href="{{route('admin.add_sticker_form')}}">Add Sticker</a>
+                     </li>
+                     <li class="sub_menu"><a href="{{route('admin.sticker_list')}}">Sticker List</a>
+                     </li>
+                   </ul>
+                 </li>
+
+                  <li><a href="{{route('admin.change_password_form')}}"><i class="fa fa-key" aria-hidden="true"></i>Change Password</a></li>
 
                 </ul>
               </div>
