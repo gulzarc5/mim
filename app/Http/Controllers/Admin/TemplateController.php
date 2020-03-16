@@ -28,7 +28,7 @@ class TemplateController extends Controller
         if($request->hasfile('template')){
             $destination = public_path('admin/images/template/');
             $image_extension = $image->getClientOriginalExtension();
-            $image_name = md5(date('now').time())."."$image_extension";
+            $image_name = md5(date('now').time()).".".$image_extension";
             $original_path = $destination.$image_name;
             Image::make($image)->save($original_path);
             $thumb_path = public_path('admin/images/template/thumb/').$image_name;
