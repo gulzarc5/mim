@@ -20,7 +20,7 @@ class TemplateController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'template' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            'template' => 'required|image|mimes:jpeg,png,jpg,svg|max:10240',
         ]);
         $name = $request->input('name');
         $image = $request->file('template');
