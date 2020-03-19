@@ -7,11 +7,19 @@
     <div class="row tile_count">
       <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Templates</span>
-        <div class="count green">0</div>
+        <div class="count green">
+          @if(isset($templates))
+            {{$templates}}
+          @endif
+        </div>
       </div>
       <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-clock-o"></i> Total Stickers</span>
-        <div class="count green">0</div>
+        <div class="count green">
+          @if(isset($stickers))
+            {{$stickers}}
+          @endif
+        </div>
       </div>
       
     </div>
