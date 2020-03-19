@@ -10,6 +10,8 @@ class DashboardController extends Controller
 {
     public function dashboardView()
     {
-        return view('admin.dashboard');
+    	$stickers = DB::table('stickers')->count();
+    	$templates = DB::table('templates')->count();
+        return view('admin.dashboard',compact('stickers','templates'));
     }
 }
