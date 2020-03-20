@@ -20,18 +20,20 @@ class StickerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'sticker' => 'required|image|mimes:jpeg,png,jpg,svg|max:10240',
+            'sticker' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:10240',
         ]);
         $name = $request->input('name');
         $image = $request->file('sticker');
         $image_name = null;
         if($request->hasfile('sticker')){
-            $destination = public_path('admin/images/sticker/');
+
+            $destination = base_path().'/public/admin/images/sticker/';
             $image_extension = $image->getClientOriginalExtension();
             $image_name = md5(date('now').time())."."."$image_extension";
             $original_path = $destination.$image_name;
             Image::make($image)->save($original_path);
-            $thumb_path = public_path('admin/images/sticker/thumb/').$image_name;
+
+            $thumb_path = base_path().'/public/admin/images/sticker/thumb/'.$image_name;
             $img = Image::make($image->getRealPath());
             $img->resize(300, 300, function ($constraint) {
                 $constraint->aspectRatio();
@@ -59,12 +61,12 @@ class StickerController extends Controller
         $sticker = DB::table('stickers')->where('id',$id)->first();
         if ($sticker) {
             DB::table('stickers')->where('id',$id)->delete();
-            $path = public_path('admin\images\sticker\\'.$sticker->image);
+            $path = base_path().'\public\admin\images\sticker\\'.$sticker->image;
             if (File::exists($path)){
                 File::delete($path);
             }
 
-            $path = public_path('admin\images\sticker\thumb\\'.$sticker->image);
+            $path = base_path().'\public\admin\images\sticker\thumb\\'.$sticker->image;
             if (File::exists($path)){
                 File::delete($path);
             }

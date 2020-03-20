@@ -20,18 +20,18 @@ class TemplateController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'template' => 'required|image|mimes:jpeg,png,jpg,svg|max:10240',
+            'template' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:10240',
         ]);
         $name = $request->input('name');
         $image = $request->file('template');
         $image_name = null;
         if($request->hasfile('template')){
-            $destination = public_path('admin/images/template/');
+             $destination = base_path().'/public/admin/images/template/';
             $image_extension = $image->getClientOriginalExtension();
             $image_name = md5(date('now').time()).".".$image_extension;
             $original_path = $destination.$image_name;
             Image::make($image)->save($original_path);
-            $thumb_path = public_path('admin/images/template/thumb/').$image_name;
+             $thumb_path = base_path().'/public/admin/images/template/thumb/'.$image_name;
             $img = Image::make($image->getRealPath());
             $img->resize(300, 300, function ($constraint) {
                 $constraint->aspectRatio();
@@ -59,12 +59,13 @@ class TemplateController extends Controller
         $sticker = DB::table('templates')->where('id',$id)->first();
         if ($sticker) {
             DB::table('templates')->where('id',$id)->delete();
-            $path = public_path('admin\images\template\\'.$sticker->image);
+
+            $path = base_path().'/public/admin\images\template\\'.$sticker->image;
             if (File::exists($path)){
                 File::delete($path);
             }
 
-            $path = public_path('admin\images\template\thumb\\'.$sticker->image);
+            $path = base_path().'/public/admin\images\template\thumb\\'.$sticker->image;
             if (File::exists($path)){
                 File::delete($path);
             }
